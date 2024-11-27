@@ -2,13 +2,18 @@ package tw.edu.pu.csim.s1120326.cccccc
 
 import android.media.MediaPlayer
 import android.os.Bundle
+import android.webkit.WebSettings.TextSize
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.material3.ButtonDefaults.buttonColors
@@ -18,13 +23,18 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import tw.edu.pu.csim.s1120326.cccccc.ui.theme.Cccccc1127Theme
 import androidx.compose.foundation.layout.Column as Column1
 import androidx.compose.material3.Button as Button
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -93,8 +103,15 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                             // 播放完成後釋放資源
                             mediaPlayer.release()
                         }
-                    }) {
-                        Text(text = "點我 ${index + 1}")
+                    },
+                        modifier = Modifier.size(150.dp, 60.dp) // 設置按鈕的大小
+                        ) {
+                        Text(text = "點我 ${index + 1}",
+                            style = TextStyle(
+                                fontSize = 24.sp, // 使用 sp 設定字體大小
+                                fontWeight = FontWeight.Bold// 設置文字大小
+                            )
+                        )
                     }
 
                     // 水果圖片
@@ -102,8 +119,9 @@ fun Greeting(name: String, modifier: Modifier = Modifier) {
                         painter = painterResource(id = fruit[index].first),
                         contentDescription = "水果圖片",
                         modifier = Modifier
+                            .graphicsLayer(scaleX = 1.2f, scaleY = 1.2f)
                             .fillParentMaxWidth(0.8f)
-                            .padding(top = 8.dp)
+                            .padding(top = 20.dp)
                     )
                 }
             }
